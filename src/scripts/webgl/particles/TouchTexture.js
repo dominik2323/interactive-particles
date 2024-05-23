@@ -11,7 +11,7 @@ export default class TouchTexture {
   constructor(parent) {
     this.parent = parent;
     this.size = 64;
-    this.maxAge = 120;
+    this.maxAge = 320;
     this.radius = 0.15;
     this.trail = [];
 
@@ -82,7 +82,7 @@ export default class TouchTexture {
         1 - (point.age - this.maxAge * 0.3) / (this.maxAge * 0.7),
         0,
         1,
-        1
+        1,
       );
     }
 
@@ -95,7 +95,7 @@ export default class TouchTexture {
       radius * 0.25,
       pos.x,
       pos.y,
-      radius
+      radius,
     );
     grd.addColorStop(0, `rgba(255, 255, 255, 0.2)`);
     grd.addColorStop(1, "rgba(0, 0, 0, 0.0)");

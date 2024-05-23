@@ -27,8 +27,10 @@ float random(float n) {
 	return fract(sin(n) * 43758.5453123);
 }
 
+
 void main() {
 	vUv = uv;
+
 
 	// particle uv
 	vec2 puv = offset.xy / uTextureSize;
@@ -49,12 +51,14 @@ void main() {
 	// displaced.y *= uv.y * 1.0;
 
 	// touch
-	float force = 30.0 * uForce;
-	float t = .8 - texture2D(uTouch, puv).r;
+	float force = 40.0 * uForce;
+	// float t = .8 - texture2D(uTouch, puv).r;
+	float t = texture2D(uTouch, puv).r * 2.0;
 	// displaced.z += t * force * rndz;
-	float grad = vPUv.x * 3.0;
-	displaced.x += cos(angle) * t * force * rndz * 1.0;
-	displaced.y += sin(angle) * t * force * rndz * 2.0 * grad;
+	float grad = vPUv.x * 5.0;
+	displaced.x += cos(angle) * t * force  * 1.0 * grad;
+	displaced.y += sin(angle) * t * force  * 1.0 * grad;
+
 
 	// particle size
 	// float psize = (snoise_1_2(vec2(uTime, pindex) * 0.5) + 2.0);

@@ -65,8 +65,8 @@ export default class Particles {
       uTime: { value: 0 },
       uRandom: { value: 1.0 },
       uDepth: { value: 2.0 },
-      uSize: { value: 0.0 },
-      uForce: { value: 0.0 },
+      uSize: { value: 0.7 },
+      uForce: { value: 1.0 },
       uTextureSize: { value: new THREE.Vector2(this.width, this.height) },
       uTexture: { value: this.texture },
       uTouch: { value: null },
@@ -101,7 +101,7 @@ export default class Particles {
 
     // index
     geometry.setIndex(
-      new THREE.BufferAttribute(new Uint16Array([0, 2, 1, 2, 3, 1]), 1)
+      new THREE.BufferAttribute(new Uint16Array([0, 2, 1, 2, 3, 1]), 1),
     );
 
     const indices = new Uint16Array(numVisible);
@@ -124,15 +124,15 @@ export default class Particles {
 
     geometry.addAttribute(
       "pindex",
-      new THREE.InstancedBufferAttribute(indices, 1, false)
+      new THREE.InstancedBufferAttribute(indices, 1, false),
     );
     geometry.addAttribute(
       "offset",
-      new THREE.InstancedBufferAttribute(offsets, 3, false)
+      new THREE.InstancedBufferAttribute(offsets, 3, false),
     );
     geometry.addAttribute(
       "angle",
-      new THREE.InstancedBufferAttribute(angles, 1, false)
+      new THREE.InstancedBufferAttribute(angles, 1, false),
     );
 
     this.object3D = new THREE.Mesh(geometry, material);
@@ -162,7 +162,7 @@ export default class Particles {
 
     this.webgl.interactive.addListener(
       "interactive-move",
-      this.handlerInteractiveMove
+      this.handlerInteractiveMove,
     );
     this.webgl.interactive.objects.push(this.hitArea);
     this.webgl.interactive.enable();
@@ -171,11 +171,11 @@ export default class Particles {
   removeListeners() {
     this.webgl.interactive.removeListener(
       "interactive-move",
-      this.handlerInteractiveMove
+      this.handlerInteractiveMove,
     );
 
     const index = this.webgl.interactive.objects.findIndex(
-      (obj) => obj === this.hitArea
+      (obj) => obj === this.hitArea,
     );
     this.webgl.interactive.objects.splice(index, 1);
     this.webgl.interactive.disable();
@@ -198,14 +198,14 @@ export default class Particles {
       this.object3D.material.uniforms.uSize,
       time,
       { value: 0.5 },
-      { value: 1.0 }
+      { value: 1.0 },
     );
     TweenLite.to(this.object3D.material.uniforms.uRandom, time, { value: 2.0 });
     TweenLite.fromTo(
       this.object3D.material.uniforms.uDepth,
       time * 1.5,
       { value: 40.0 },
-      { value: 4.0 }
+      { value: 4.0 },
     );
 
     this.addListeners();
@@ -224,7 +224,7 @@ export default class Particles {
         value: -20.0,
         ease: Quad.easeIn,
       });
-      TweenLite.to(this.object3D.material.uniforms.uSize, time * 0.8, {
+      TweenLite.to(this.object3D.material.uniforms.uSize, time * 0.7, {
         value: 0.0,
       });
 

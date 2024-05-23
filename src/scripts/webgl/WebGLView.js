@@ -12,6 +12,7 @@ export default class WebGLView {
 
     this.samples = [
       "images/ocuway-logo.jpg",
+      "images/claim.jpg",
       // "images/ocuway-logo-2x.jpg",
       // "images/ramp.jpg"
     ];
@@ -33,7 +34,7 @@ export default class WebGLView {
       50,
       window.innerWidth / window.innerHeight,
       1,
-      10000
+      10000,
     );
     this.camera.position.z = 300;
 
@@ -47,7 +48,7 @@ export default class WebGLView {
   initControls() {
     this.interactive = new InteractiveControls(
       this.camera,
-      this.renderer.domElement
+      this.renderer.domElement,
     );
   }
 
