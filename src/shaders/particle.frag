@@ -8,7 +8,8 @@ varying vec2 vPUv;
 varying vec2 vUv;
 
 void main() {
-	vec4 color = vec4(0.0);
+	// 73 53 114
+	vec4 color = vec4(73.0/255.0, 53.0/255.0, 114.0/255.0, 1.0);
 	vec2 uv = vUv;
 	vec2 puv = vPUv;
 
@@ -26,7 +27,7 @@ void main() {
 	float t = smoothstep(0.0, border, dist);
 
 	// final color
-	color = colB;
+	// color = colA;
 	color.a = t;
 
 	gl_FragColor = color;

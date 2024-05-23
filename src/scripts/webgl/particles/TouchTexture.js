@@ -74,7 +74,7 @@ export default class TouchTexture {
       y: (1 - point.y) * this.size,
     };
 
-    let intensity = 1;
+    let intensity = 1.5;
     if (point.age < this.maxAge * 0.3) {
       intensity = easeOutSine(point.age / (this.maxAge * 0.3), 0, 1, 1);
     } else {
@@ -82,7 +82,7 @@ export default class TouchTexture {
         1 - (point.age - this.maxAge * 0.3) / (this.maxAge * 0.7),
         0,
         1,
-        1,
+        1
       );
     }
 
@@ -95,7 +95,7 @@ export default class TouchTexture {
       radius * 0.25,
       pos.x,
       pos.y,
-      radius,
+      radius
     );
     grd.addColorStop(0, `rgba(255, 255, 255, 0.2)`);
     grd.addColorStop(1, "rgba(0, 0, 0, 0.0)");

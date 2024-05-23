@@ -8,7 +8,7 @@ export default class GUIView {
     this.particlesHitArea = false;
     this.particlesRandom = 2;
     this.particlesDepth = 4;
-    this.particlesSize = 1.5;
+    this.particlesSize = 1.0;
 
     this.touchRadius = 0.15;
 
@@ -81,7 +81,7 @@ export default class GUIView {
         0,
         0,
         this.touchCanvas.width,
-        this.touchCanvas.height,
+        this.touchCanvas.height
       );
       this.touchCtx.drawImage(source, x, 0);
     }

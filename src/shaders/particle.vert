@@ -42,21 +42,25 @@ void main() {
 	// displacement
 	vec3 displaced = offset;
 	// randomise
-	displaced.xy += vec2(random(pindex) - 0.5, random(offset.x + pindex) - 0.5) * uRandom;
+	// displaced.xy += vec2(random(pindex) - 0.5, random(offset.x + pindex) - 0.5) * uRandom;
 	float rndz = (random(pindex) + snoise_1_2(vec2(pindex * 0.1, uTime * 0.1)));
-	displaced.z += rndz * (random(pindex) * 2.0 * uDepth);
+	// displaced.z += rndz * (uDepth);
 	// center
 	displaced.xy -= uTextureSize * 0.5;
+	// displaced.y *= uv.y * 1.0;
 
 	// touch
-	float t = texture2D(uTouch, puv).r;
-	displaced.z += t * 20.0 * rndz;
-	displaced.x += cos(angle) * t * 20.0 * rndz;
-	displaced.y += sin(angle) * t * 20.0 * rndz;
+	float force = 30.0;
+	float t = .8 - texture2D(uTouch, puv).r;
+	// displaced.z += t * force * rndz;
+	float grad = vPUv.x * 3.0;
+	displaced.x += cos(angle) * t * force * rndz * 1.0;
+	displaced.y += sin(angle) * t * force * rndz * 2.0 * grad;
 
 	// particle size
-	float psize = (snoise_1_2(vec2(uTime, pindex) * 0.5) + 2.0);
-	psize *= max(grey, 0.2);
+	// float psize = (snoise_1_2(vec2(uTime, pindex) * 0.5) + 2.0);
+	float psize = 0.5;
+	// psize *= max(grey, 0.2);
 	psize *= uSize;
 
 	// final position

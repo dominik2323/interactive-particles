@@ -10,13 +10,7 @@ export default class WebGLView {
   constructor(app) {
     this.app = app;
 
-    this.samples = [
-      "images/sample-01.png",
-      "images/sample-02.png",
-      "images/sample-03.png",
-      "images/sample-04.png",
-      "images/sample-05.png",
-    ];
+    this.samples = ["images/ocuway-logo.jpg", "images/ramp.jpg"];
 
     this.initThree();
     this.initParticles();
@@ -35,7 +29,7 @@ export default class WebGLView {
       50,
       window.innerWidth / window.innerHeight,
       1,
-      10000,
+      10000
     );
     this.camera.position.z = 300;
 
@@ -49,7 +43,7 @@ export default class WebGLView {
   initControls() {
     this.interactive = new InteractiveControls(
       this.camera,
-      this.renderer.domElement,
+      this.renderer.domElement
     );
   }
 
