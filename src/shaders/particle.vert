@@ -1,5 +1,3 @@
-// @author brunoimbrizi / http://brunoimbrizi.com
-
 precision highp float;
 
 attribute float pindex;
@@ -12,6 +10,7 @@ uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
 
 uniform float uTime;
+uniform float uForce;
 uniform float uRandom;
 uniform float uDepth;
 uniform float uSize;
@@ -50,7 +49,7 @@ void main() {
 	// displaced.y *= uv.y * 1.0;
 
 	// touch
-	float force = 30.0;
+	float force = 30.0 * uForce;
 	float t = .8 - texture2D(uTouch, puv).r;
 	// displaced.z += t * force * rndz;
 	float grad = vPUv.x * 3.0;
@@ -59,8 +58,7 @@ void main() {
 
 	// particle size
 	// float psize = (snoise_1_2(vec2(uTime, pindex) * 0.5) + 2.0);
-	float psize = 0.5;
-	// psize *= max(grey, 0.2);
+	float psize = 0.6;
 	psize *= uSize;
 
 	// final position

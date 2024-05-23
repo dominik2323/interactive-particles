@@ -53,7 +53,6 @@ export default class Particles {
 
       const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       originalColors = Float32Array.from(imgData.data);
-      console.log({ originalColors });
 
       for (let i = 0; i < this.numPoints; i++) {
         if (originalColors[i * 4 + 0] > threshold) numVisible++;
@@ -67,6 +66,7 @@ export default class Particles {
       uRandom: { value: 1.0 },
       uDepth: { value: 2.0 },
       uSize: { value: 0.0 },
+      uForce: { value: 0.0 },
       uTextureSize: { value: new THREE.Vector2(this.width, this.height) },
       uTexture: { value: this.texture },
       uTouch: { value: null },

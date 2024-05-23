@@ -10,7 +10,11 @@ export default class WebGLView {
   constructor(app) {
     this.app = app;
 
-    this.samples = ["images/ocuway-logo.jpg", "images/ramp.jpg"];
+    this.samples = [
+      "images/ocuway-logo.jpg",
+      // "images/ocuway-logo-2x.jpg",
+      // "images/ramp.jpg"
+    ];
 
     this.initThree();
     this.initParticles();

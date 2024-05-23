@@ -9,6 +9,7 @@ export default class GUIView {
     this.particlesRandom = 2;
     this.particlesDepth = 4;
     this.particlesSize = 1.0;
+    this.force = 0;
 
     this.touchRadius = 0.15;
 
@@ -17,6 +18,7 @@ export default class GUIView {
     this.rangeSize = [0, 3];
     this.rangeDepth = [1, 10];
     this.rangeRadius = [0, 0.5];
+    this.forceRange = [0, 1];
 
     this.initControlKit();
     // this.initStats();
@@ -38,6 +40,10 @@ export default class GUIView {
 
       .addGroup({ label: "Particles", enable: true })
       // .addCheckbox(this, 'particlesHitArea', { label: 'hit area', onChange: this.onParticlesChange.bind(this) })
+      .addSlider(this, "force", "forceRange", {
+        label: "Force range",
+        onChange: this.onParticlesChange.bind(this),
+      })
       .addSlider(this, "particlesRandom", "rangeRandom", {
         label: "random",
         onChange: this.onParticlesChange.bind(this),
@@ -119,6 +125,8 @@ export default class GUIView {
       this.particlesDepth;
     this.app.webgl.particles.object3D.material.uniforms.uSize.value =
       this.particlesSize;
+    this.app.webgl.particles.object3D.material.uniforms.uForce.value =
+      this.force;
 
     this.app.webgl.particles.hitArea.material.visible = this.particlesHitArea;
   }
